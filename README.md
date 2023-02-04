@@ -1,6 +1,7 @@
 # confused eeg analysis
 
 Delta – 1-3 Hz of power spectrum – sleep,dreaming
+
 Alpha 1 – Lower 8-11 Hz of power spectrum
 Alpha 2 – Higher 8-11 Hz of power spectrum – very relaxed , passive attention, reflective
 Beta 1 – Lower 12-29 Hz of power spectrum
