@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <title>student attention Classifier</title>
+    <link href='https://fonts.googleapis.com/css?family=Happy Monkey' rel='stylesheet'>
+<style>
+input[type=text], select {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  color: black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #b1b1b1;
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+  font-family: 'Happy Monkey';
+  font-size: 14px;
+}
+
+input[type=submit] {
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+div {
+  border-radius: 5px;
+  background-color:#AE9AFE;
+  padding: 20px;
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #280E51;
+  font-family: 'Happy Monkey';
+  font-size: 22px;
+  border-radius: 9px; 
+}
+
+body {
+    font-family: 'Happy Monkey';font-size: 22px;
+    background-color: #AE9AFE;
+}
+
+label{
+    background-color: grey;
+    position: absolute;
+}
+
+.container {
+   
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.item {
+    width: 60%;
+
+}
+</style>
+<body>
+
+
+<h3 style="text-align: center">Student Attention Classifier</h3>
+<div class="container">
+    <div class="item">
+  <form action="http://127.0.0.1:5000/predict" method="post">
+
+    <label for="feature 1"></label>
+    <input type="text" id="subjectID" name="Sid" placeholder="SubjectID">
+    <br>
+    <br>
+    <label for="feature 2"></label>
+    <input type="text" id="VideoID" name="vid" placeholder="VideoID">
+    <br>
+    <br>
+    <label for="feature 3"></label>
+    <input type="text" id="Attention" name="att" placeholder="Attention">
+    <br>
+    <br>
+    <label for="feature 4"></label>
+    <input type="text" id="Meditation" name="med" placeholder="Meditation">
+    <br>
+    <br>
+    <label for="feature 5"></label>
+    <input type="text" id="raw" name="rw" placeholder="Raw wave">
+    <br>
+    <br>
+    <label for="feature 6"></label>
+    <input type="text" id="delta" name="del" placeholder="Delta">
+    <br>
+    <br>
+    <label for="feature 7"></label>
+    <input type="text" id="theta" name="the" placeholder="Theta">
+    <br>
+    <br>
+    <label for="feature 8"></label>
+    <input type="text" id="alpha1" name="a1" placeholder="Alpha1">
+    <br>
+    <br>
+    <label for="feature 9"></label>
+    <input type="text" id="alpha2" name="a2" placeholder="Alpha2">
+    <br>
+    <br>
+    <label for="feature 10"></label>
+    <input type="text" id="beta1" name="b1" placeholder="Beta1">
+    <br>
+    <br>
+    <label for="feature 11"></label>
+    <input type="text" id="beta2" name="b2" placeholder="Beta2">
+    <br>
+    <br>
+    <label for="feature 12"></label>
+    <input type="text" id="gamma1" name="g1" placeholder="Gamma1">
+    <br>
+    <br>
+    <label for="feature 13"></label>
+    <input type="text" id="gamma2" name="gamma2" placeholder="Gamma2">
+    <br>
+    <br>
+    <button class="button button1">Predict</button>
+  </form>
+  <br>
+  <br>
+  
+  {{prediction_text}}
+  
+  </div>
+</div>
+
+</body>
+</html>
+
+
