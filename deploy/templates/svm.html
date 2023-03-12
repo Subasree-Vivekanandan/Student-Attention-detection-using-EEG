@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <title>student attention Classifier</title>
+    <title>Student Attention Classifier</title>
     <link href='https://fonts.googleapis.com/css?family=Happy Monkey' rel='stylesheet'>
 <style>
 input[type=text], select {
@@ -11,8 +11,8 @@ input[type=text], select {
   color: black;
   border-radius: 4px;
   box-sizing: border-box;
-  background: #b1b1b1;
-  border: 1px solid #000000;
+  background: white;
+  border: 1px solid #0e4f87;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 9px;
   font-family: 'Happy Monkey';
@@ -30,7 +30,7 @@ input[type=submit] {
 
 div {
   border-radius: 5px;
-  background-color:#AE9AFE;
+  background-color: #d7c6fd;
   padding: 20px;
 }
 
@@ -44,15 +44,17 @@ div {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  background-color: #280E51;
+  background-color: #0e4f87;
   font-family: 'Happy Monkey';
   font-size: 22px;
   border-radius: 9px; 
 }
 
+
+
 body {
     font-family: 'Happy Monkey';font-size: 22px;
-    background-color: #AE9AFE;
+    background-color:  #d7c6fd;
 }
 
 label{
@@ -75,10 +77,13 @@ label{
 <body>
 
 
-<h3 style="text-align: center">Prediction using SVM</h3>
+<h3 style="text-align: center">Prediction using SVMS</h3>
+<div style="justify-content: center; display: flex;">
+  <img src="https://media.istockphoto.com/id/1146359018/es/vector/un-par-de-hombres-y-mujeres-que-tienen-una-interrogaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=nlcVPwEsAH3K1xgOuGaLIn2_blZJGBT8vVNpRShfG5A=" width="300px" height="auto">
+</div>
 <div class="container">
     <div class="item">
-  <form action="http://127.0.0.1:5000/predictsvm" method="post">
+   <form action="http://127.0.0.1:5000/predictsvm" method="post">
 
     <label for="feature 1"></label>
     <input type="text" id="subjectID" name="Sid" placeholder="SubjectID">
@@ -132,7 +137,7 @@ label{
     <input type="text" id="gamma2" name="gamma2" placeholder="Gamma2">
     <br>
     <br>
-    <button class="button button1">SVM Predict</button>
+    <button  class="button button1">Predict</button>
   </form>
   <br>
   <br>
@@ -144,5 +149,7 @@ label{
 
 </body>
 </html>
+
+
 
 
