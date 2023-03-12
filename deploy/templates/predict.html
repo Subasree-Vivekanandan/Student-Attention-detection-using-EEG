@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <title>Student Attention Classifier</title>
+    <link href='https://fonts.googleapis.com/css?family=Happy Monkey' rel='stylesheet'>
+<style>
+
+div {
+  border-radius: 5px;
+  background-color: #d7c6fd;
+  padding: 20px;
+}
+
+
+body {
+    font-family: 'Happy Monkey';font-size: 22px;
+    background-color:  #d7c6fd;
+}
+
+.container {
+display: flex;
+justify-content: center;
+}
+
+.predict {
+ display: flex;
+ justify-content:center;
+}
+</style>
+<body>
+
+
+<h3 style="text-align: center">Predicted Output</h3>
+<div class="container">
+   <img src="https://media.istockphoto.com/id/1146359018/es/vector/un-par-de-hombres-y-mujeres-que-tienen-una-interrogaci%C3%B3n.jpg?s=612x612&w=0&k=20&c=nlcVPwEsAH3K1xgOuGaLIn2_blZJGBT8vVNpRShfG5A=" width="300px" height="auto">
+   <br>
+   <br>  
+</div>
+<div class="predict">
+ {{prediction_text}}
+</div>
+</body>
+</html>
+
+
