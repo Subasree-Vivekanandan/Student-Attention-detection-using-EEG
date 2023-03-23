@@ -5,8 +5,7 @@ Created on Sun Mar  5 19:11:15 2023
 @author: HP
 """
 
-
-import numpy as np
+import pandas as pd
 from flask import Flask, request,render_template
 import pickle as pkl
 
@@ -22,56 +21,104 @@ def home():
 
 @app.route('/svm')
 def svm_page():
-    return render_template('svm.html')
+    return render_template('svm_upload.html')
 
 @app.route('/predictsvm',methods=['POST'])
 def predict_svm():
-    svmf = [float(x) for x in request.form.values()]
-    svm_final = [np.array(svmf)]
-    svm_prediction = svm_model.predict(svm_final)
+    f = request.files.get('fileupload')
+    df = pd.read_csv(f, encoding='latin-1')
+    numpy_f = df.to_numpy()
+    y_preds = []
+    output = []
     
-    if (svm_prediction==0.0):
-        svm_output = 'Not Confused'
-    else:
-        svm_output = 'Confused'
+    student_id = list(df.SubjectID)
+    attention = list(df["Attention"])
+    for i in range(len(numpy_f)):
+        features = [numpy_f[i]]
+        y_pr = svm_model.predict(features)
+        y_p = y_pr.item()
+        y_preds.append(y_p)
+        
+    for i in range(len(y_preds)):
+        if(y_preds[i]==1.0):
+            output.append("Confused")
+        else:
+            output.append("Not Confused")
     
-    return  render_template('predict.html',prediction_text='Student is {}'.format(svm_output))
+        
+    return render_template('check_p.html', Student=student_id,Attention=attention,Output=output)
 
 @app.route('/logreg')
 def logreg_page():
-    return render_template('logreg.html')
+    return render_template('lr_upload.html')
 
 @app.route('/lrpredict',methods=['POST'])
 def predict_lr():
-    lr_features =  [float(x) for x in request.form.values()]
-    lr_final = [np.array(lr_features)]
-    lr_prediction = lr_model.predict(lr_final)
+    f = request.files.get('fileupload')
+    df = pd.read_csv(f, encoding='latin-1')
+    numpy_f = df.to_numpy()
+    y_preds = []
+    output = []
     
-    if(lr_prediction==0.0):
-        lr_output = 'Not Confused'
-    else:
-        lr_output = 'Confused'
+    student_id = list(df.SubjectID)
+    attention = list(df["Attention"])
+    for i in range(len(numpy_f)):
+        features = [numpy_f[i]]
+        y_pr = lr_model.predict(features)
+        y_p = y_pr.item()
+        y_preds.append(y_p)
+        
+    for i in range(len(y_preds)):
+        if(y_preds[i]==1.0):
+            output.append("Confused")
+        else:
+            output.append("Not Confused")
     
-    return render_template('predict.html',prediction_text='Student is {}'.format(lr_output))
+        
+    return render_template('check_p.html', Student=student_id,Attention=attention,Output=output)
     
 @app.route('/knn')
 def knn_page():
-    return render_template('knn.html')
+    return render_template('knn_upload.html')
 
 @app.route('/knnpredict',methods=['POST'])
 def predict_knn():
-    features = [float(x) for x in request.form.values()]
-    final_features = [np.array(features)]
-    prediction = knn_model.predict(final_features)
+    f = request.files.get('fileupload')
+    df = pd.read_csv(f, encoding='latin-1')
+    numpy_f = df.to_numpy()
+    y_preds = []
+    output = []
     
-    if(prediction==0.0):
-        output = 'Not Confused'
-    else:
-        output = 'Confused'
+    student_id = list(df.SubjectID)
+    attention = list(df["Attention"])
+    for i in range(len(numpy_f)):
+        features = [numpy_f[i]]
+        y_pr = knn_model.predict(features)
+        y_p = y_pr.item()
+        y_preds.append(y_p)
+        
+    for i in range(len(y_preds)):
+        if(y_preds[i]==1.0):
+            output.append("Confused")
+        else:
+            output.append("Not Confused")
     
-    
-    return render_template('predict.html',prediction_text='Student is {}'.format(output))
+        
+    return render_template('check_p.html', Student=student_id,Attention=attention,Output=output)
 
+#@app.route('/upload')
+#def upload_route_summary():
+#    return render_template('upload.html')
+
+#@app.route('/file',methods=['POST'])
+#def file_upload():
+#       f = request.files.get('fileupload')
+#       df = pd.read_csv(f, encoding='latin-1')
+#       output = df.to_numpy()
+#       output_arr = np.array(output)
+       
+#       return render_template('display.html', dict_output=output_arr)
+    
 if __name__ == "__main__":
     app.run(debug=True)    
         
