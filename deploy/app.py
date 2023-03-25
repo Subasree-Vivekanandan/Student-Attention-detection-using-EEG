@@ -8,7 +8,7 @@ Created on Sun Mar  5 19:11:15 2023
 import pandas as pd
 from flask import Flask, request,render_template
 import pickle as pkl
-
+from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
 knn_model = pkl.load(open('knn_eeg_model.pkl','rb'))
@@ -26,8 +26,11 @@ def svm_page():
 @app.route('/predictsvm',methods=['POST'])
 def predict_svm():
     f = request.files.get('fileupload')
-    df = pd.read_csv(f, encoding='latin-1')
-    numpy_f = df.to_numpy()
+    df = pd.read_csv(f)
+    scaler = StandardScaler()
+    scaled_features = scaler.fit_transform(df)
+    df_scaled = pd.DataFrame(scaled_features,columns = df.columns[:])
+    numpy_f = df_scaled.to_numpy()
     y_preds = []
     output = []
     
@@ -35,15 +38,16 @@ def predict_svm():
     attention = list(df["Attention"])
     for i in range(len(numpy_f)):
         features = [numpy_f[i]]
+        
         y_pr = svm_model.predict(features)
         y_p = y_pr.item()
         y_preds.append(y_p)
         
     for i in range(len(y_preds)):
-        if(y_preds[i]==1.0):
-            output.append("Confused")
-        else:
+        if(y_preds[i]==0.0):
             output.append("Not Confused")
+        else:
+            output.append("Confused")
     
         
     return render_template('check_p.html', Student=student_id,Attention=attention,Output=output)
@@ -55,7 +59,7 @@ def logreg_page():
 @app.route('/lrpredict',methods=['POST'])
 def predict_lr():
     f = request.files.get('fileupload')
-    df = pd.read_csv(f, encoding='latin-1')
+    df = pd.read_csv(f)
     numpy_f = df.to_numpy()
     y_preds = []
     output = []
@@ -84,8 +88,11 @@ def knn_page():
 @app.route('/knnpredict',methods=['POST'])
 def predict_knn():
     f = request.files.get('fileupload')
-    df = pd.read_csv(f, encoding='latin-1')
-    numpy_f = df.to_numpy()
+    df = pd.read_csv(f)
+    scaler = StandardScaler()
+    scaled_features = scaler.fit_transform(df)
+    df_scaled = pd.DataFrame(scaled_features,columns = df.columns[:])
+    numpy_f = df_scaled.to_numpy()
     y_preds = []
     output = []
     
@@ -98,10 +105,10 @@ def predict_knn():
         y_preds.append(y_p)
         
     for i in range(len(y_preds)):
-        if(y_preds[i]==1.0):
-            output.append("Confused")
-        else:
+        if(y_preds[i]==0.0):
             output.append("Not Confused")
+        else:
+            output.append("Confused")
     
         
     return render_template('check_p.html', Student=student_id,Attention=attention,Output=output)
