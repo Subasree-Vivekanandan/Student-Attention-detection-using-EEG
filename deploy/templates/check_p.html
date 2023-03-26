@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prediction Results</title>
+     <link href='https://fonts.googleapis.com/css?family=Happy Monkey' rel='stylesheet'>
+      
+    <style>
+      
+       body {
+         font-family: 'Happy Monkey';
+         background-color: #d7c6fd;
+       }
+       .heading{
+        text-align:center;
+       }
+     table {
+        margin: auto;
+        border-collapse: collapse;
+        box-shadow: 0 0 20px #7f5af0;
+      }
+      th {
+        background-color: #7f5af0;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
+      }
+      th:hover {
+        background-color: #a47ee8;
+      }
+      td {
+        padding: 10px;
+        border: 1px solid #d7c6fd;
+      }
+      tr:hover td {
+        background-color: #e5d5fe;
+      }
+    </style>
+  </head>
+  <body>
+   <div class="heading">
+    <h1>Prediction Results</h1>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          
+          <th>STUDENT ID</th>
+          <th>ATTENTION (0-100)</th>
+          <th>OUTPUT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in range(Student|length) %}
+        <tr>
+          <td>{{ Student[i] }}</td>
+          <td>{{ Attention[i] }}</td>
+          <td>{{ Output[i] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+  </body>
+</html>
+
